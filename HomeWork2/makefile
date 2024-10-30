@@ -1,14 +1,16 @@
 # ターゲットとファイル名の設定
 TEXFILE = repo
+OUTPUT = HW2_21C1002_相田舟星.pdf  # 学籍番号と名前を含む出力ファイル名
 
 # デフォルトターゲット
-all: $(TEXFILE).pdf
+all: $(OUTPUT)
 
 # LaTeXファイルをPDFにコンパイル (xelatex 使用)
-$(TEXFILE).pdf: $(TEXFILE).tex
-	# ここでxetexを使用して2回コンパイル
+$(OUTPUT): $(TEXFILE).tex
+	# ここでxelatexを使用して2回コンパイル
 	xelatex $(TEXFILE).tex
 	xelatex $(TEXFILE).tex  # 目次や参照のために2回目を実行
+	mv $(TEXFILE).pdf $(OUTPUT)
 
 # クリーンアップ: 中間ファイルを削除
 clean:
@@ -16,7 +18,7 @@ clean:
 
 # distclean: すべての生成物を削除
 distclean: clean
-	rm -f $(TEXFILE).pdf
+	rm -f $(OUTPUT)
 
 # 実行例:
 # - make         : PDF を生成
