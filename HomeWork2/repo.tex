@@ -51,28 +51,35 @@ a = \frac{\sum (X_i - \bar{X})(Y_i - \bar{Y})}{\sum (X_i - \bar{X})^2}
 具体的に計算すると、
 
 \[
-a = \frac{(-3 - 0)(0 - 1.75) + (-1 - 0)(1 - 1.75) + (1 - 0)(2 - 1.75) + (3 - 0)(4 - 1.75)}{(-3 - 0)^2 + (-1 - 0)^2 + (1 - 0)^2 + (3 - 0)^2}
-\]
-
-\[
-= \frac{5.25 + 0.75 + 0.25 + 6.75}{9 + 1 + 1 + 9} = \frac{13}{20} = 0.65
+\begin{aligned}
+a &= \frac{(-3 - 0)(0 - 1.75) + (-1 - 0)(1 - 1.75) + (1 - 0)(2 - 1.75) + (3 - 0)(4 - 1.75)}{(-3 - 0)^2 + (-1 - 0)^2 + (1 - 0)^2 + (3 - 0)^2} \\
+&= \frac{(-3)(-1.75) + (-1)(-0.75) + (1)(0.25) + (3)(2.25)}{9 + 1 + 1 + 9} \\
+&= \frac{5.25 + 0.75 + 0.25 + 6.75}{20} \\
+&= \frac{13}{20} \\
+&= 0.65
+\end{aligned}
 \]
 
 切片 \(b\) は次の式で求められます。
 
 \[
-b = \bar{Y} - a \cdot \bar{X} = 1.75 - 0.65 \cdot 0 = 1.75
+b = \bar{Y} - a \cdot \bar{X} = 1.75 - 0.65 \times 0 = 1.75
 \]
 
-したがって、直線の方程式は次のようになります。
+したがって、最小二乗法によって求めた直線の方程式は
 
 \[
 y = 0.65x + 1.75
 \]
 
+となります。
+
+データ点と最小二乗法で得られた直線をグラフに示します。
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\linewidth]{linear_fit.png}
+    \caption{データ点と最小二乗法による直線フィット}
 \end{figure}
 
 \newpage  % 次のページに進む
@@ -80,52 +87,99 @@ y = 0.65x + 1.75
 \section*{2. 右の回路について電圧 \(U_1, U_2, U_3\) と抵抗値 \(R_1, R_2, R_3\) が既知の場合、A 点の電圧値を導出せよ。}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\linewidth]{2.png}
+    \includegraphics[width=0.5\linewidth]{2.png}
+    \caption{抵抗と電圧源の接続回路}
 \end{figure}
 
 \subsection*{回答}
-キルヒホッフの電流法則により、A点での電流のバランスを考えます。
+キルヒホッフの電流法則（KCL）をA点に適用します。A点に流れ込む電流の合計はゼロになります。
+
+各抵抗を流れる電流を考えると、
+
+\[
+\begin{aligned}
+I_1 &= \frac{U_1 - V_A}{R_1} \\
+I_2 &= \frac{U_2 - V_A}{R_2} \\
+I_3 &= \frac{U_3 - V_A}{R_3}
+\end{aligned}
+\]
+
+これらの電流の合計はゼロなので、
+
+\[
+I_1 + I_2 + I_3 = 0
+\]
+
+これを展開すると、
 
 \[
 \frac{U_1 - V_A}{R_1} + \frac{U_2 - V_A}{R_2} + \frac{U_3 - V_A}{R_3} = 0
 \]
 
-この式を整理して \(V_A\) について解きます。
+両辺を整理すると、
 
 \[
-V_A \left( \frac{1}{R_1} + \frac{1}{R_2} + \frac{1}{R_3} \right) = \frac{U_1}{R_1} + \frac{U_2}{R_2} + \frac{U_3}{R_3}
+\left( \frac{1}{R_1} + \frac{1}{R_2} + \frac{1}{R_3} \right) V_A = \frac{U_1}{R_1} + \frac{U_2}{R_2} + \frac{U_3}{R_3}
 \]
+
+したがって、A点の電位 \(V_A\) は次の式で与えられます。
 
 \[
-V_A = \frac{\frac{U_1}{R_1} + \frac{U_2}{R_2} + \frac{U_3}{R_3}}{\frac{1}{R_1} + \frac{1}{R_2} + \frac{1}{R_3}}
+V_A = \frac{\dfrac{U_1}{R_1} + \dfrac{U_2}{R_2} + \dfrac{U_3}{R_3}}{\dfrac{1}{R_1} + \dfrac{1}{R_2} + \dfrac{1}{R_3}}
 \]
 
-この式は抵抗の合成抵抗 \(R\) を用いると次のように表されます。
+または、コンダクタンス \(G_i = \dfrac{1}{R_i}\) を用いて、
 
 \[
-V_A = \frac{R_1 R_2 U_3 + R_1 R_3 U_2 + R_2 R_3 U_1}{R_1 R_2 + R_1 R_3 + R_2 R_3}
+V_A = \frac{G_1 U_1 + G_2 U_2 + G_3 U_3}{G_1 + G_2 + G_3}
 \]
+
+この式により、既知の電圧と抵抗値からA点の電圧を計算することができます。
 
 \newpage  % 次のページに進む
 
 \section*{3. 下記オペアンプ回路について電圧 \(U_{\text{IN}}\) と抵抗値 \(R_1, R_2, R_3\) が既知の場合、抵抗 \(R_3\) に流れている電流 \(I_3\) を導出せよ。\(R_1=10\text{k}\Omega, R_2=50\text{k}\Omega\) の際、回路の増幅率を計算せよ。}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\linewidth]{3.png}
+    \includegraphics[width=0.6\linewidth]{3.png}
+    \caption{反転増幅回路}
 \end{figure}
 
 \subsection*{回答}
-反転増幅器の増幅率は次の式で与えられます。
+
+まず、反転増幅回路の増幅率（電圧利得）を求めます。
 
 \[
-\text{増幅率} = -\frac{R_2}{R_1} = -\frac{50\ \text{k}\Omega}{10\ \text{k}\Omega} = -5.0
+\text{増幅率} = A_v = -\frac{R_2}{R_1}
 \]
 
-また、抵抗 \(R_3\) に流れる電流 \(I_3\) は次の式で表されます。
+抵抗値が \(R_1 = 10\ \text{k}\Omega\), \(R_2 = 50\ \text{k}\Omega\) の場合、
 
 \[
-I_3 = -\frac{5 \cdot V_{\text{in}}}{R_3}
+A_v = -\frac{50\ \text{k}\Omega}{10\ \text{k}\Omega} = -5
 \]
+
+したがって、出力電圧 \(V_{\text{out}}\) は入力電圧 \(U_{\text{IN}}\) を用いて、
+
+\[
+V_{\text{out}} = A_v \times U_{\text{IN}} = -5 \times U_{\text{IN}}
+\]
+
+次に、抵抗 \(R_3\) に流れる電流 \(I_3\) を求めます。オペアンプの出力電圧は \(V_{\text{out}}\) であり、抵抗 \(R_3\) のもう一方の端は接地されています。
+
+したがって、\(I_3\) は
+
+\[
+I_3 = \frac{V_{\text{out}} - 0}{R_3} = \frac{-5 U_{\text{IN}}}{R_3}
+\]
+
+つまり、
+
+\[
+I_3 = -\frac{5 U_{\text{IN}}}{R_3}
+\]
+
+となります。負の符号は、電流の向きが出力端子から抵抗 \(R_3\) を通って接地へ流れることを示しています。
 
 \newpage  % 次のページに進む
 
@@ -137,28 +191,58 @@ I_3 = -\frac{5 \cdot V_{\text{in}}}{R_3}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\linewidth]{e1.png}
+    \caption{データ点のプロット}
 \end{figure}
 
 \subsection*{回答}
-2次関数フィッティングにより、係数 \(a\), \(b\), \(c\) を求めます。
+データに対して2次関数 \( y = ax^2 + bx + c \) を最小二乗法でフィッティングします。
 
-行列を用いて \(A\) と \(Y\) を表すと、
+まず、正規方程式を立てます。
 
 \[
-A = \begin{pmatrix} X_1^2 & X_1 & 1 \\ X_2^2 & X_2 & 1 \\ \vdots & \vdots & \vdots \\ X_n^2 & X_n & 1 \end{pmatrix}, \quad Y = \begin{pmatrix} Y_1 \\ Y_2 \\ \vdots \\ Y_n \end{pmatrix}
+\begin{cases}
+\sum y_i = a \sum x_i^2 + b \sum x_i + c n \\
+\sum x_i y_i = a \sum x_i^3 + b \sum x_i^2 + c \sum x_i \\
+\sum x_i^2 y_i = a \sum x_i^4 + b \sum x_i^3 + c \sum x_i^2
+\end{cases}
 \]
 
-この方程式を解くことで \(a\), \(b\), \(c\) の値が得られます。
+データから各和を計算します。
 
-計算の結果、次の2次関数が得られます。
+データ:
+
+\[
+\begin{array}{c|c|c|c|c|c|c|c}
+i & x_i & y_i & x_i^2 & x_i^3 & x_i^4 & x_i y_i & x_i^2 y_i \\
+\hline
+1 & x_1 & y_1 & x_1^2 & x_1^3 & x_1^4 & x_1 y_1 & x_1^2 y_1 \\
+\vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
+n & x_n & y_n & x_n^2 & x_n^3 & x_n^4 & x_n y_n & x_n^2 y_n \\
+\end{array}
+\]
+
+これらの値を具体的に計算し、正規方程式を解くことで係数 \(a\), \(b\), \(c\) を求めます。
+
+計算の結果、係数は次のようになります。
+
+\[
+a = 0.06, \quad b = 0.65, \quad c = 1.44
+\]
+
+したがって、最小二乗法による2次関数は
 
 \[
 y = 0.06x^2 + 0.65x + 1.44
 \]
 
+となります。
+
+フィッティング結果をデータ点とともにプロットします。
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\linewidth]{quadratic_fit.png}
+    \caption{データ点と最小二乗法による2次関数フィット}
 \end{figure}
 
 \newpage  % 次のページに進む
@@ -166,36 +250,93 @@ y = 0.06x^2 + 0.65x + 1.44
 \section*{Ex.2 右の回路について電圧 \(U_A, U_B, U_C\) と抵抗値 \(R_1, R_2, R_3, R_4, R_5\) が既知の場合、AB 点間の電圧値 \(E\) を導出せよ。}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\linewidth]{e2.png}
+    \includegraphics[width=0.6\linewidth]{e2.png}
+    \caption{複合回路}
 \end{figure}
 
 \subsection*{回答}
-キルヒホッフの法則を適用し、AB間の電圧 \(E\) を求めます。各点での電圧のバランスを以下のように設定します。
+回路内の電流と電圧の関係を用いて、AB間の電圧 \(E\) を求めます。
+
+まず、抵抗 \(R_1\), \(R_2\), \(R_3\) を介して点AとBに接続された電圧源 \(U_A\), \(U_B\), \(U_C\) があるとします。
+
+キルヒホッフの電流法則より、点ABにおける電流の合計はゼロです。
 
 \[
 \frac{U_A - E}{R_1} + \frac{U_B - E}{R_2} + \frac{U_C - E}{R_3} = 0
 \]
 
-この式を整理して \(E\) について解きます。一般的には各抵抗の値が異なるため、シンボリックな解として次のように表せます。
+これを整理すると、
 
 \[
-E = \frac{R_1 R_2 U_C + R_1 R_3 U_B + R_2 R_3 U_A}{R_1 R_2 + R_1 R_3 + R_2 R_3}
+\left( \frac{1}{R_1} + \frac{1}{R_2} + \frac{1}{R_3} \right) E = \frac{U_A}{R_1} + \frac{U_B}{R_2} + \frac{U_C}{R_3}
 \]
+
+したがって、
+
+\[
+E = \frac{\dfrac{U_A}{R_1} + \dfrac{U_B}{R_2} + \dfrac{U_C}{R_3}}{\dfrac{1}{R_1} + \dfrac{1}{R_2} + \dfrac{1}{R_3}}
+\]
+
+コンダクタンス \(G_i = \dfrac{1}{R_i}\) を用いると、
+
+\[
+E = \frac{G_1 U_A + G_2 U_B + G_3 U_C}{G_1 + G_2 + G_3}
+\]
+
+これにより、AB間の電圧 \(E\) を求めることができます。
 
 \newpage  % 次のページに進む
 
 \section*{Ex.3 下記オペアンプ回路について電圧 \(U_{\text{IN}}\) と抵抗値 \(R_1, R_2, R_3\) が既知の場合、オペアンプの出力端子に流れ込む電流 \(I_o\) を導出せよ。}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\linewidth]{e3.png}
+    \includegraphics[width=0.6\linewidth]{e3.png}
+    \caption{オペアンプ回路}
 \end{figure}
 
 \subsection*{回答}
-出力電流 \(I_o\) は次のように表されます。
+オペアンプの理想動作を仮定すると、入力端子間の電位差はゼロ（仮想短絡）であり、入力端子に流れ込む電流もゼロ（無限大入力インピーダンス）となります。
+
+まず、ノード電圧法を用いて出力電圧 \(V_{\text{out}}\) を求めます。
+
+反転入力端子の電位を \(V_-\) とすると、\(V_- = V_+\) ですが、非反転入力端子は接地されているため、\(V_+ = 0\) です。したがって、\(V_- = 0\) となります。
+
+入力側の電流：
 
 \[
-I_o = \frac{U_{\text{IN}}}{R_1} - \frac{U_{\text{IN}}}{R_2} = \frac{U_{\text{IN}}(R_2 - R_1)}{R_1 R_2}
+I_1 = \frac{U_{\text{IN}} - V_-}{R_1} = \frac{U_{\text{IN}} - 0}{R_1} = \frac{U_{\text{IN}}}{R_1}
 \]
 
-\end{document}
+フィードバック側の電流：
 
+\[
+I_2 = \frac{V_{\text{out}} - V_-}{R_2} = \frac{V_{\text{out}} - 0}{R_2} = \frac{V_{\text{out}}}{R_2}
+\]
+
+オペアンプの入力端子に流れ込む電流はゼロなので、\(I_1 + I_2 = 0\) となります。
+
+\[
+\frac{U_{\text{IN}}}{R_1} + \frac{V_{\text{out}}}{R_2} = 0
+\]
+
+これを \(V_{\text{out}}\) について解くと、
+
+\[
+V_{\text{out}} = -\frac{R_2}{R_1} U_{\text{IN}}
+\]
+
+出力電流 \(I_o\) は、出力電圧 \(V_{\text{out}}\) から抵抗 \(R_3\) を通して流れます。
+
+\[
+I_o = \frac{V_{\text{out}} - 0}{R_3} = \frac{-\dfrac{R_2}{R_1} U_{\text{IN}}}{R_3} = -\frac{R_2 U_{\text{IN}}}{R_1 R_3}
+\]
+
+したがって、オペアンプの出力端子に流れ込む電流 \(I_o\) は
+
+\[
+I_o = -\frac{R_2 U_{\text{IN}}}{R_1 R_3}
+\]
+
+となります。負の符号は、電流の向きがオペアンプの出力端子から抵抗 \(R_3\) を通って接地へ流れることを示しています。
+
+\end{document}

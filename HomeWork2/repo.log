@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2024.10.7)  30 OCT 2024 13:26
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2024.10.7)  6 NOV 2024 23:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -446,28 +446,29 @@ File: linear_fit.png Graphic file (type bmp)
  [1] [2]
 File: 2.png Graphic file (type bmp)
 <2.png>
- [3]
+ [3] [4]
 File: 3.png Graphic file (type bmp)
 <3.png>
- [4]
+ [5]
 File: e1.png Graphic file (type bmp)
 <e1.png>
+ [6]
 File: quadratic_fit.png Graphic file (type bmp)
 <quadratic_fit.png>
- [5] [6]
+ [7]
 File: e2.png Graphic file (type bmp)
 <e2.png>
- [7]
+ [8]
 File: e3.png Graphic file (type bmp)
 <e3.png>
- [8] (./repo.aux) ) 
+ [9] (./repo.aux) ) 
 Here is how much of TeX's memory you used:
- 7284 strings out of 476191
- 188741 string characters out of 5812072
- 549915 words of memory out of 5000000
- 27945 multiletter control sequences out of 15000+600000
+ 7318 strings out of 476191
+ 190888 string characters out of 5812072
+ 556917 words of memory out of 5000000
+ 27979 multiletter control sequences out of 15000+600000
  471608 words of font info for 61 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 85i,8n,95p,347b,294s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 85i,7n,95p,347b,294s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on repo.pdf (9 pages).
+Output written on repo.pdf (10 pages).
